@@ -1,8 +1,6 @@
-cmake_minimum_required (VERSION 2.8)
-
-set (lift_version 0.0.0)
-set (CMAKE_INSTALL_PREFIX "./build")
+cmake_minimum_required (VERSION 3.1)
 
 project (lift CXX)
 
-add_subdirectory (src)
+add_subdirectory (include)
+add_subdirectory (test)

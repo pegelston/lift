@@ -1,0 +1,1 @@
+add_subdirectory (lift_metadata_tests)
