@@ -36,17 +36,22 @@ void test_static_for()
 void test_factory()
 {
     auto factoryFn = 
-        []() -> int
+        [](int value) -> int
         {
-            return 0;
+            return value;
         };
 
     application app;
     auto f = app.create_factory(factoryFn);
+
+    std::get<0>(*f.get_parameters()) = 2;
+
     f.run();
     auto result = f.value();
     std::cout << *result << std::endl;
 }
+
+
 
 int main()
 {
