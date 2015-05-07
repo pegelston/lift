@@ -1,48 +1,41 @@
 
 #pragma once
 
-#include <memory>
+#include <iostream>
 #include "function_traits.h"
+#include "call.h"
 
-template <typename T>
-class factory
-{
-private:
-    using traits = function_traits<T>;
-    using result_type = typename traits::result_type;
-    using result_type_ptr = std::shared_ptr<result_type>;
-    using parameter_tuple_type = typename traits::parameter_tuple_type;
-    using parameter_tuple_type_ptr = std::shared_ptr<parameter_tuple_type>;
+namespace lift {
+ 
+    //
+    // This class provides a container for running a factory function
+    // used to build up the dependencies within an application.
+    //
 
-    T factoryFn;
-    parameter_tuple_type_ptr parameters;
-    result_type_ptr result;
-
-public:
-    factory(T const& fn) :
-        factoryFn(fn),
-        parameters(std::make_shared<parameter_tuple_type>()),
-        result(nullptr)
+    template <typename T>
+    class factory
     {
-    }
+    private:
+        using traits = meta::function_traits < T > ;
+        using result_type = typename traits::result_type;
+        using tuple_type = typename traits::tuple_type;
 
-    void run()
-    {
-        result = std::make_shared<typename traits::result_type>(factoryFn(std::get<0>(*parameters)));
-    }
+        T f;
+        tuple_type parameters;
+        result_type result;
 
-    parameter_tuple_type_ptr get_parameters()
-    {
-        return parameters;
-    }
+    public:
+        factory(T const& fn) :
+            f(fn),
+            parameters(),
+            result()
+        {
+        }
 
-    size_t arity()
-    {
-        return traits::arity;
-    }
+        result_type run()
+        {
+            return call(f, parameters);
+        }
+    };
 
-    result_type_ptr value() const
-    {
-        return result;
-    }
-};
+}

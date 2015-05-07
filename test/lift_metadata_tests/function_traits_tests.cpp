@@ -5,6 +5,10 @@
 #include "factory.h"
 
 #include <iostream>
+#include <string>
+
+using namespace lift;
+using namespace lift::meta;
 
 // Does not need to be called, this is checked at compile time.
 void test_function_traits()
@@ -33,27 +37,19 @@ void test_static_for()
     static_for::call(for_loop_operator(), 0, "hello", 2, 3);
 }
 
-void test_factory()
-{
-    auto factoryFn = 
-        [](int value) -> int
-        {
-            return value;
-        };
-
-    application app;
-    auto f = app.create_factory(factoryFn);
-
-    std::get<0>(*f.get_parameters()) = 2;
-
-    f.run();
-    auto result = f.value();
-    std::cout << *result << std::endl;
-}
-
-
-
 int main()
 {
-    test_factory();
+    auto result = application().create_factory(
+        [](int value, int value2, int value3) -> std::string
+        {
+            std::cout << value << value2 << value3 << std::endl;
+            return "success!";
+        }).run();
+
+        // Right now we are letting the tuple be initialized with
+        // default values, but eventually we want to populate the
+        // parameter tuple from a repo of created objects, and feed
+        // them to the function in a dependency injection type fashion.
+
+        std::cout << result << std::endl;
 }

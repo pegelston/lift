@@ -3,21 +3,20 @@
 
 #include "factory.h"
 
-class application
-{
-public:
-    application()
-    {
-    }
+namespace lift {
 
-    template<typename T>
-    factory<T> create_factory(T const& fn)
+    class application
     {
-        return factory<T>(fn);
-    }
+    public:
+        application()
+        {
+        }
 
-    void start()
-    {
+        template<typename T>
+        factory<T> create_factory(T const& fn)
+        {
+            return factory<T>(fn);
+        }
+    };
 
-    }
-};
+}
