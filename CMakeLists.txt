@@ -4,6 +4,5 @@ project (lift CXX)
 
 enable_testing()
 
-add_subdirectory (gtest)
 add_subdirectory (include)
 add_subdirectory (test)

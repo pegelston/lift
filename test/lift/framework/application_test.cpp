@@ -5,8 +5,15 @@
 
 using namespace lift;
 
+void dummyTest()
+{
+    ASSERT_EQ(1, 2);
+}
+
 int main() 
 {
+    dummyTest();
+
     application().create_factory(
         [=](int value, int value2) -> bool
         {
