@@ -2,7 +2,7 @@
 #pragma once
 
 #include "call.h"
-#include "function_traits.h"
+#include "../metadata/function_traits.h"
 
 namespace lift {
  

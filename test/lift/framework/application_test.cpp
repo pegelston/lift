@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include "lift/framework/application.h"
+#include "gtest/gtest.h"
 
 using namespace lift;
 
