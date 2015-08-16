@@ -1,9 +1,8 @@
 
 #pragma once
 
-#include <iostream>
-#include "function_traits.h"
 #include "call.h"
+#include "function_traits.h"
 
 namespace lift {
  

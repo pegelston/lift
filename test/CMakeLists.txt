@@ -1,2 +1,3 @@
 
-add_subdirectory (lift_metadata_tests)
+add_subdirectory (metadata)
+add_subdirectory (framework)

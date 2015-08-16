@@ -1,13 +1,10 @@
-#include "function_traits.h"
-#include "static_for.h"
-
-#include "application.h"
-#include "factory.h"
 
 #include <iostream>
 #include <string>
 
-using namespace lift;
+#include "lift/metadata/function_traits.h"
+#include "lift/metadata/static_for.h"
+
 using namespace lift::meta;
 
 // Does not need to be called, this is checked at compile time.
@@ -23,33 +20,21 @@ void test_function_traits()
     static_assert(traits::arity == 3u, "arity not same");
 }
 
-struct for_loop_operator
+struct print_generic
 {
     template <typename T>
     void operator()(T const& value) const
     {
-        std::cout << value << std::endl;
+        std::cout << value << " ";
     }
 };
 
 void test_static_for()
 {
-    static_for::call(for_loop_operator(), 0, "hello", 2, 3);
+    static_for(print_generic(), 0, "hello", 2, 3);
 }
 
 int main()
 {
-    auto result = application().create_factory(
-        [](int value, int value2, int value3) -> std::string
-        {
-            std::cout << value << value2 << value3 << std::endl;
-            return "success!";
-        }).run();
-
-        // Right now we are letting the tuple be initialized with
-        // default values, but eventually we want to populate the
-        // parameter tuple from a repo of created objects, and feed
-        // them to the function in a dependency injection type fashion.
-
-        std::cout << result << std::endl;
+    test_static_for();
 }
