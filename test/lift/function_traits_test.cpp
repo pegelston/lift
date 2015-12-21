@@ -1,8 +1,7 @@
 
 #include <iostream>
 #include <string>
-
-#include "lift/metadata/function_traits.h"
+#include "lift/function_traits.h"
 
 using namespace lift::meta;
 

@@ -1,19 +1,11 @@
 
 #include <iostream>
-#include "lift/framework/application.h"
-#include "gtest/gtest.h"
+#include "lift/application.h"
 
 using namespace lift;
 
-void dummyTest()
+void test_app()
 {
-    ASSERT_EQ(1, 2);
-}
-
-int main() 
-{
-    dummyTest();
-
     application().create_factory(
         [=](int value, int value2) -> bool
         {

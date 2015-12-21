@@ -19,4 +19,4 @@ namespace lift {
         }
     };
 
-}
+} // namespace lift

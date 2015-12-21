@@ -1,5 +1,6 @@
 # Lift project specific ignores
 artifacts/
+build_x64/
 .gradle/
 
 ## Ignore Visual Studio temporary files, build results, and
