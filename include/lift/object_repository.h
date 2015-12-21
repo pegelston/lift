@@ -2,6 +2,7 @@
 #pragma once
 
 #include <map>
+#include <memory>
 #include "object.h"
 
 namespace lift {
@@ -26,7 +27,7 @@ namespace lift {
         }
 
     private:
-        std::map<std::string, lift::object> objects;
+        std::map<std::string, std::shared_ptr<lift::object>> objects;
     };
 
 } // namespace lift
