@@ -12,10 +12,10 @@ namespace lift {
         {
         }
 
-        template<typename T>
-        factory<T> create_factory(T const& fn)
+        template<typename T, typename R>
+        factory<T> create_factory(T const& fn, R const& r = R())
         {
-            return factory<T>(fn);
+            return factory<T>(fn, r);
         }
     };
 

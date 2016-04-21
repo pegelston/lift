@@ -9,7 +9,7 @@ struct print_generic
     template <typename T>
     void operator()(T const& value) const
     {
-        std::cout << value << " ";
+        std::cout << value << std::endl;
     }
 };
 

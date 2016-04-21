@@ -1,15 +1,22 @@
 
 #include <iostream>
+#include <string>
 #include "lift/application.h"
+#include "lift/object_repository.h"
 
 using namespace lift;
 
 void test_app()
 {
+    // setting up an object repo for testing purposes.
+    internal::object_repository repo;
+    repo.stash(std::string("Hello, object repository!"));
+
     application().create_factory(
-        [=](int value, int value2) -> bool
+        [=](std::string value) -> bool
         {
-            std::cout << value << " " << value2 << std::endl;
+            std::cout << value << std::endl;
+
             return true;
-        }).run();
+        }, repo).run();
 }

@@ -14,9 +14,9 @@
 namespace lift {
 
     template < typename F, typename Tuple >
-    auto call(F const& f, Tuple&& t) -> typename meta::function_traits<F>::result_type
+    auto call(F const& f, Tuple&& t) -> typename meta::function_traits< F >::result_type
     {
-        return internal::parameter_expander<F>::expand(f, std::forward<Tuple>(t));
+        return internal::parameter_expander< F >::expand(f, std::forward< Tuple >(t));
     }
 
 } // namespace lift

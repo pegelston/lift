@@ -12,31 +12,32 @@ namespace lift {
     // used to build up the dependencies within an application.
     //
 
-    template <typename T>
+    template <typename FactoryCallback>
     class factory
     {
     private:
-        using traits = meta::function_traits < T >;
+        using traits = meta::function_traits<FactoryCallback>;
         using result_type = typename traits::result_type;
         using tuple_type = typename traits::tuple_type;
 
-        T f;
+        FactoryCallback factory_cb;
         tuple_type parameters;
         result_type result;
-        object_repository repo;
+        internal::object_repository repo;
 
     public:
-        factory(T const& fn) :
-            f(fn),
+        factory(FactoryCallback const& fn, internal::object_repository r = internal::object_repository()) :
+            factory_cb(fn),
             parameters(),
             result(),
-            repo()
+            repo(r)
         {
         }
 
         result_type run()
         {
-            return call(f, parameters);
+            repo.gather<FactoryCallback>(parameters);
+            return call(factory_cb, parameters);
         }
     };
 
