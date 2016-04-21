@@ -2,10 +2,7 @@
 #pragma once
 
 #include <map>
-#include <memory>
 #include <tuple>
-#include "call.h"
-#include "function_traits.h"
 #include "index_tuple.h"
 #include "object.h"
 #include "static_for.h"
